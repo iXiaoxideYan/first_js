@@ -3,7 +3,7 @@ const router = express.Router();
 
 const testMiddleWare = require('../../middelwares/test');
 
-const tws = [{id: 0, message: 'Test 1'},
+var tws = [{id: 0, message: 'Test 1'},
              {id: 12, message: 'Test 2'},
              {id: 2, message: 'Test 3'}
 ];
@@ -31,5 +31,28 @@ router.post('/', (req, res) => {
     res.status(200).json(tws);
 
 });
+
+router.patch('/:twId', (req, res) => {
+    twId = req.params.twId;
+    message = req.body.message;
+
+    tws = tws.filter((tw) => {
+        if(tw.id == twId){
+            // console.log(twId);
+            tw.message = message
+        }
+        return tws;
+    });
+
+    res.status(200).json(tws);
+});
+
+router.delete('/:twId', (req, res) => {
+    twId = req.params.twId;
+    tws = tws.filter((tw) => {
+        return tw.id != twId;
+    });
+    res.status(200).json(tws);
+})
 
 module.exports = router;
