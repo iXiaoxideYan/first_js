@@ -5,11 +5,12 @@ const morgan = require('morgan');
 const twsRouter = require('./routes/web/tws');
 const twsApiRouter = require('./routes/api/tws');
 const path = require('path');
-
+const connectDB = require('./middelwares/db')
 const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 
 const app = express();
+connectDB.connect();
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));           
