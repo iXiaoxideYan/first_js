@@ -8,6 +8,7 @@ const path = require('path');
 const connectDB = require('./middelwares/db')
 const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
+const moment = require('moment')
 
 const app = express();
 connectDB.connect();
@@ -18,11 +19,26 @@ app.use(bodyParser.json());
 
 app.engine('.hbs', exphbs({
     extname: '.hbs',
-    defaultLayout: 'main'
+    defaultLayout: 'main',
+    helpers: {
+        formatDate: function (date, format) {
+            return moment(date, "YYYYMMDD").fromNow();
+        },
+        isEmpty: (value) => {
+            return value === '';
+        },
+        isNotEmpty: (value) => {
+            return value !== '';
+        }
+    }
 }));
 app.set('view engine', '.hbs');
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname + '/node_modules/jquery/dist'));
+app.use(express.static(__dirname + '/node_modules/bootstrap/dist'));
+app.use(express.static(__dirname + '/node_modules/l/fontawesome-free'));
+
 app.use('/tws', twsRouter);
 app.use('/api/tws', twsApiRouter);
 

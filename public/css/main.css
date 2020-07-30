@@ -1,3 +1,52 @@
-body{
-    background: purple;
+h1.title {
+    display: block;
+    border-bottom: 3px dashed #C1C1C1;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 10px;
 }
+.jumbotron {
+    width: 100%;
+}
+.form-group{
+    text-align: center;
+}
+.alert {
+    width: 100%;
+}
+.tools {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    visibility: hidden;
+}
+
+/* body{
+    table-layout: auto;
+    background: white;
+}
+
+table{
+    table-layout: fixed;
+    border-collapse: separate; 
+    border-spacing: 5px 5px;
+    border-style: hidden;
+    width: 30%;
+}
+
+table tr:nth-child(odd) {
+    background-color: #ff33cc;
+}
+
+table tr:nth-child(even) {
+    background-color: #e495e4;
+}
+
+table td, table th {
+    font-size: 16px;
+    
+    border: 1px solid black;
+} */
+
